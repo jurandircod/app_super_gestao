@@ -9,10 +9,31 @@
 
 
 
-@if(count($fornecedores) > 0 && count($fornecedores) < 10)
-    <h3> Existem alguns fornecedores</h3>
-@elseif(count($fornecedores) > 10)
-    <h3>existem varios fornecedores cadastrados</h3>
-@else
-    <h3>não existe fornecedores cadastrados</h3>
-@endif
+@isset($fornecedores)
+    
+    @foreach($fornecedores as $indices => $fornecedor)
+    Fornecedor:{{$fornecedor['nome']}}
+    <br>
+    Status: {{$fornecedor['status']}}
+    <br>
+    CNPJ: {{$fornecedor['cnpj']}}
+    <br>
+    Telefone: ({{ $fornecedor['ddd'] ?? ''}}) {{$fornecedor['telefone'] ?? ''}}
+    @switch($fornecedor['ddd'])
+        @case ('11')
+            são Paulo -SP
+            @break
+        @case ('32')
+            juiz de fora - MG
+            @break
+        @case ('85')
+            Fortaleza - CE
+            @break
+        @default
+            Estado não identificado
+    @endswitch
+    <hr>
+@endforeach
+@endisset
+
+<br>
