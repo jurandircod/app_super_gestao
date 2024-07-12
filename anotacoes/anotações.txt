@@ -1,0 +1,80 @@
+Select * from
+
+where('coluna', 'comparação', 'termo comparado');
+
+// dois wheres seguidos funcionam como and
+
+wherein('Coluna', 'termo comparado');
+
+// retorna vários registro exp [1,2,3];
+
+whereNotIn('coluna', 'termo a não ser incluso');
+// não retorna somente o intervalo
+
+orWhere('Funciona como where só que não precisa retornar true');
+
+whereNull('retorna valores onde a coluna inserida é nula');
+
+whereNotNull('retorna valores onde a coluna não é nula');
+
+// observação consultas onde a conexão do operador logico for or utilizar o or atras 
+
+whereDate('coluna', 'parametro de comparação')
+
+->get('retorna a consulta');
+
+whereDay('Coluna', 'Dia');
+
+whereMonth('coluna', 'mes');
+
+whereYear('coluna', 'ano');
+
+whereTime('coluna' 'horário');
+
+whereColumn('coluna 1','operador', 'coluna 2') "não compara valores nulos"
+
+
+//separa por grupos 
+
+where(function($query){ $query->where('nome','jorge')->orWhere('nome', 'ana')})->where(function($query){$query->wherein('motivo_contato', [1,2]->orWhereBetween('id', [4,6]); })->get();
+
+
+// ordenação de registro
+
+
+pluck('nome da coluna', 'nome da chave')->'recupera todas as informações das colunas'
+
+//salvar no banco de dados
+
+instanciar a classe exemplo fornecedores
+
+use \App\Fornecedor;
+
+// find recupera o id;
+$fornecedores = Fornecedor::find(1);
+
+//acessa o atributo nome do fornecedor e altera
+$fornecedores->nome = 'joaquim';
+
+//salva no banco
+$fornecedores->save();
+
+fill(['chave' => 'array']) // para utilizar o objeto fill precisamos criar um atributo protected fillable na classe;
+
+update(['coluna' => 'valor', 'coluna'=> 'valor']);
+delete(); // deleta o registro
+destroy('espera o ID que sera deletado');
+
+//SoftDeletes = 'inativa a tabela para fins de historico';
+para utilizar a softdeletes precimaos importar seu namespace pro código assim 
+use Illuminate\Database\Eloquent\SoftDeletes;
+
+precisamos dar um use dentro da classe para ser efetivo
+
+assim use SoftDeletes;
+
+withTrashed() // retorna os registros excluídos com softdelete
+onlyTrashed() // retorta somente os registros deletados
+
+
+

@@ -1,0 +1,7 @@
+// resetar o banco
+
+php artisan migrate:fresh;
+
+//criar uma seeder
+
+php artisan make:seeder ['nome']
