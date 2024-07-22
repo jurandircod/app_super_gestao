@@ -3,6 +3,7 @@
 use Illuminate\Database\Seeder;
 use App\Fornecedor;
 
+
 class FornecedorSeeder extends Seeder
 {
     /**
@@ -23,7 +24,14 @@ class FornecedorSeeder extends Seeder
         // o metodo create (atenção ao metodo fillable)
         Fornecedor::create([
             'nome'=>'Fornecedor 200',
-            'site' => ''
+            'site' => 'Fornecedor.com',
+            'uf' => 'pr',
+            'email' => 'fornecedor@gmail.com'
         ]);
+
+        DB::table('fornecedores')->insert(['nome'=>'Fornecedor 2002',
+            'site' => 'Fornecedor22.com',
+            'uf' => 'pr',
+            'email' => 'fornecedor@gmail2.com']);
     }
 }
