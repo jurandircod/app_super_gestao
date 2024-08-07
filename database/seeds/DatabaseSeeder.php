@@ -16,3 +16,4 @@ class DatabaseSeeder extends Seeder
         $this->call(SiteContatoSeeder::class); 
     }
 }
+
