@@ -4,6 +4,7 @@
 @section('conteudo')
 
 
+
         <div class="conteudo-pagina">
             <div class="titulo-pagina">
                 <h1>Entre em contato conosco</h1>
@@ -11,7 +12,7 @@
 
             <div class="informacao-pagina">
                 <div class="contato-principal">
-                    @component('site.layouts._components.form_contato')
+                    @component('site.layouts._components.form_contato', ['motivo_contatos' => $motivo_contatos])
                     <p> A nossa equipe ira avaliar a sua mensagem e responderemos </p>
                     <p>O mais breve possível</p>
                     @endcomponent

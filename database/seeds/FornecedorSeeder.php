@@ -4,6 +4,8 @@ use Illuminate\Database\Seeder;
 use App\Fornecedor;
 
 
+
+
 class FornecedorSeeder extends Seeder
 {
     /**

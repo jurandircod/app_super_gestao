@@ -4,11 +4,13 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\SiteContato;
+use App\MotivoContato;
 
 class ContatoController extends Controller
 {
-    public function contato(Request $request){
-        
+    public function contato(Request $request)
+    {
+
         //dd($request->all());
         $contato = new SiteContato;
         /*$contato->nome = $request->input('nome');
@@ -22,22 +24,27 @@ class ContatoController extends Controller
         //$contato->save();
         //print_r($contato->getAttributes());
 
-        return view('site.contato', ['titulo' => 'contato (teste)']);
+        $motivo_contatos = MotivoContato::all();
+
+        return view('site.contato', ['titulo' => 'contato (teste)', 'motivo_contatos' => $motivo_contatos]);
     }
 
-    public function salvar(Request $request){
-        
+    public function salvar(Request $request)
+    {
+
 
         // realizar validações
         $request->validate([
-            'nome' => 'required|min:3|max:40', //nomes com no minimo 3 caracteres e max 40;
+            'nome' => 'required|min:3|max:40|unique:site_contatos', //nomes com no minimo 3 unique faz o nome so poder ter um no banco de dados caracteres e max 40;
             'telefone' => 'required',
-            'email' => 'required',
-            'motivo_contato' => 'required',
+            'email' => 'email',
+            'motivo_contatos_id' => 'required',
             'mensagem' => 'required|min:3|max:2000', //mensagens com no minimo 3 caracteres e max 200;
         ]);
 
-        
-       SiteContato::create($request->all());
+        //salva o contato 
+        SiteContato::create($request->all());
+        // redireciona para a pagina principal
+        return redirect()->route('site.index');
     }
 }
